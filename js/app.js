@@ -93,6 +93,18 @@ for (let planet of planets) {
   nav.innerHTML += createMenuItem(planet);
 }
 
+// creates and add scroll top button and adds the click event
+const scrollTopButton = document.createElement("span");
+scrollTopButton.innerHTML = "&#8679;";
+scrollTopButton.classList.add("scroll_top_btn");
+document.body.appendChild(scrollTopButton);
+scrollTopButton.addEventListener("click", () => {
+  window.scroll({
+    top: 0,
+    behavior: "smooth",
+  });
+})
+
 // Select all sections and add an event listener to the document that triggers a function
 // that loops trough every section and identifies the distance from the top of the view port
 // If the distance corresponds to the viewport it activates the apropriated class
@@ -104,7 +116,7 @@ document.addEventListener("scroll", () => {
       const planetDistance = planetSections[i].getBoundingClientRect().y;
       const itemId = planetSections[i].getAttribute("id");
       const menuItem = document.querySelector(`[data-planet="${itemId}"]`).querySelector("a");
-      console.log(itemId, menuItem);
+
       if ( planetDistance > -10 && planetDistance < 420) {
         planetSections[i].classList.add("active_section");
         menuItem.classList.add("active_nav_item");
@@ -113,11 +125,16 @@ document.addEventListener("scroll", () => {
         menuItem.classList.remove("active_nav_item");
       }
     }
+
+  if (document.body.getBoundingClientRect().y < -320 ) {
+    scrollTopButton.style.setProperty("display", "flex");
+  } else {
+    scrollTopButton.style.setProperty("display", "none");
+  }
 });
 
 // Scroll the page when any menu item is clicked
 const navItems = document.querySelectorAll('.navbar ul li');
-console.log(navItems);
 
 for (let item of navItems) {
   item.addEventListener('click', (evt) => {
