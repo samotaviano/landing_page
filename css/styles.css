@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Prompt:wght@100;200;400;600&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: #000;
+  color: #F4F3EE;
+  margin: 0;
+  background-image: url(../img/stars.png);
+  font-family: 'Prompt', sans-serif;
+}
+
+/* Background image based on picture by Bartek Garbowicz at unsplash.com */
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: #8A00E6;
+}
+
+p {
+  margin: 0;
+}
+
+.page_header {
+  background: #BCB8B1;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.navbar {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.navbar ul {
+  display: flex;
+  justify-content: center;
+  overflow-x: scroll;
+}
+
+.nav_item a {
+  display: block;
+  padding: 40px;
+}
+
+.nav_item a:hover {
+  background: #8A00E6;
+  color: #F4F3EE;;
+}
+
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+h1 {
+  text-align: center;
+  font-size: 72px;
+  font-family: 'Audiowide', cursive;
+  color: #8A00E6;
+  margin: 180px 0 120px
+}
+
+section {
+  max-width: 960px;
+  margin: 0 auto 60px;
+  border: 4px solid #55515a;
+  background: #000;
+  border-radius: 20px;
+  overflow: hidden;
+  opacity: .2;
+}
+
+.planet_container p {
+  padding: 20px;
+  background: rgba(182, 182, 182, 0.3);
+  font-size: 18px;
+  font-weight: 200;
+  line-height: 1.6;
+  color: #ba70ff;
+}
+
+.active_section {
+  border: 4px solid #8A00E6;
+  background: none;
+  opacity: 1;
+}
+
+.active_section .planet_container p {
+  background: rgba(181, 57, 164, .3);
+}
+
+h2 {
+  padding: 200px 0 40px 60px;
+  margin: 0;
+  font-size: 60px;
+  font-family: 'Audiowide', cursive;
+  color: #ff00e6;
+  text-shadow: 1px 1px 2px black;
+}
+
+footer {
+  background: #8A00E6;
+}
+
+.footer_container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 60px 40px;
+}
+
+h3 {
+  color: #ff00e6;
+  font-size: 32px;
+  max-width: 680px;
+  margin: 0 auto 20px;
+}
+
+.footer_container p {
+  font-size: 18px;
+  font-weight: 200;
+  line-height: 2;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.footer_container .credits {
+  font-size: 14px;
+  font-weight: 200;
+  margin: 20px auto;
+  color: #BCB8B1;
+}
+
+.credits a {
+  color:#ff00e6;
+}
+
+.credits a:hover {
+  color: #ff90ee;
+}
+
+
