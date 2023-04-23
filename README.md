@@ -1,2 +1,2 @@
-# landing_page
+# landing page
 Udacity Front End Developer Nanodegree Project
