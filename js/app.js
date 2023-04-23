@@ -76,7 +76,8 @@ function createSection (planet) {
 }
 
 function createMenuItem (planet) {
-  return `<li class="nav_item"><a href="#${planet.name.charAt(0).toLowerCase() + planet.name.slice(1)}">${planet.name}</a></li>`
+  const planetData = planet.name.charAt(0).toLowerCase() + planet.name.slice(1);
+  return `<li class="nav_item" data-planet="${planetData}"><a href="#${planetData}">${planet.name}</a></li>`
 }
 
 // Store the planet objects in an array
@@ -101,20 +102,20 @@ const planetSections = main.querySelectorAll("section");
 document.addEventListener("scroll", () => {
   for (let i = 0; i < planetSections.length; i++) {
       const planetDistance = planetSections[i].getBoundingClientRect().y;
+      const itemId = planetSections[i].getAttribute("id");
+      const menuItem = document.querySelector(`[data-planet="${itemId}"]`).querySelector("a");
+      console.log(itemId, menuItem);
       if ( planetDistance > -10 && planetDistance < 420) {
         planetSections[i].classList.add("active_section");
+        menuItem.classList.add("active_nav_item");
       } else {
         planetSections[i].classList.remove("active_section");
+        menuItem.classList.remove("active_nav_item");
       }
     }
-
-    const mars = planetSections[3].getBoundingClientRect().y;
-    const page = document.body.getBoundingClientRect().y;
-
-    console.log(mars, page);
 });
 
-// Scroll the page
+// Scroll the page when any menu item is clicked
 const navItems = document.querySelectorAll('.navbar ul li');
 console.log(navItems);
 
@@ -124,12 +125,12 @@ for (let item of navItems) {
 
     const clickedPlanet = item.querySelector("a").getAttribute("href");
     const clickedPlanetSection = document.querySelector(clickedPlanet);
+    const Planetpos = clickedPlanetSection.getBoundingClientRect().y;
     const pagePosition = document.body.getBoundingClientRect().y;
-    const pos = clickedPlanetSection.getBoundingClientRect().y;
-    const distanceToScroll = pagePosition - pos;
-    console.log(pos, pagePosition, distanceToScroll);
+    const distanceToScroll = pagePosition - Planetpos;
+
     window.scroll({
-      top: pagePosition - pos,
+      top: Math.abs(distanceToScroll) - 124,
       behavior: "smooth",
     });
   });

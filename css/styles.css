@@ -57,7 +57,12 @@ p {
 
 .nav_item a:hover {
   background: #8A00E6;
-  color: #F4F3EE;;
+  color: #ff00e6;
+}
+
+.active_nav_item {
+  background: #8A00E6;
+  color: #F4F3EE;
 }
 
 main {
@@ -143,10 +148,15 @@ h3 {
   font-weight: 200;
   margin: 20px auto;
   color: #BCB8B1;
+  background: rgba(255,255,255,.1);
+  display: inline-block;
+  padding: 6px 18px;
+  border-radius: 4px;
 }
 
 .credits a {
   color:#ff00e6;
+  font-weight: 500;
 }
 
 .credits a:hover {
