@@ -168,7 +168,7 @@ document.addEventListener("scroll", () => {
       // Sets the menu item link related to each section
       const menuItem = document.querySelector(`[data-planet="${planet}"]`).querySelector("a");
 
-      if ( visibleArea > 0.75 ) {
+      if ( visibleArea > 0.85 ) {
         planetSections[i].classList.add("active_section");
         menuItem.classList.add("active_nav_item");
       } else {
