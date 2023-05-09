@@ -15,6 +15,7 @@ body {
 
 /* Background image based on picture by Bartek Garbowicz at unsplash.com */
 
+
 ul {
   padding: 0;
   margin: 0;
@@ -22,6 +23,9 @@ ul {
 
 li {
   list-style: none;
+  text-align: center;
+  width: 150px;
+  flex-shrink: 0;
 }
 
 a {
@@ -35,20 +39,46 @@ p {
 
 .page_header {
   background: #BCB8B1;
+  padding: 0 40px;
   position: sticky;
   top: 0;
   z-index: 999;
 }
 
+.nav-arrow {
+  width: 40px;
+  height: 40px;
+  background: #ba70ff;
+  border-radius: 50%;
+  position: absolute;
+  display: flex;
+  align-items: center;
+}
+
+.nav-arrow:first-child {
+  top: 30px;
+  left: 20px;
+  z-index: 999;
+  background: url(../img/arrow_back.svg) 8px center / 70% no-repeat #ba70ff;
+}
+
+.nav-arrow:last-child {
+  top: 30px;
+  right: 20px;
+  z-index: 999;
+  background: url(../img/arrow_forward.svg) 8px center / 70% no-repeat #ba70ff;
+}
+
 .navbar {
   max-width: 1200px;
   margin: 0 auto;
+  position: relative;
 }
 
 .navbar ul {
   display: flex;
   justify-content: center;
-  overflow-x: scroll;
+  position: relative;
 }
 
 .nav_item a {
@@ -62,7 +92,7 @@ p {
 }
 
 .active_nav_item {
-  background: #8A00E6;
+  background: #55515a;
   color: #F4F3EE;
 }
 
@@ -182,7 +212,8 @@ h3 {
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: #ba70ff;
+  background: url(../img/rocket.svg) 8px center / 70% no-repeat;
+  background-color: #ba70ff;
   right: 30px;
   bottom: 30px;
   align-items: center;
@@ -193,7 +224,7 @@ h3 {
 }
 
 .scroll_top_btn:hover {
-  background: #ff00e6;
+  background-color: #ff00e6;
   color: #ff90ee;
 }
 
