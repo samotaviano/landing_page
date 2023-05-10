@@ -208,10 +208,12 @@ const arrowsContainer = document.querySelector("header");
 const leftArrow = document.querySelector(".nav-arrow:first-child");
 const rightArrow = document.querySelector(".nav-arrow:last-child");
 
+// The nav wich contains the ul with the menu items
+const menuContainer = document.querySelector(".navbar");
+let menuContainerWidth = window.getComputedStyle(menuContainer).width.slice(0,-2);
 
 // The ul that contains the menu items is called menuContainer
-const menuContainer = document.querySelector("ul");
-let menuContainerWidth = window.getComputedStyle(menuContainer).width.slice(0,-2);
+const menuAllItems = menuContainer.querySelector('ul');
 
 // Measurements to control the menu functionality
 
@@ -358,8 +360,8 @@ function moveDirection (arrowDir) {
 }
 
 function move (direction) {
-  menuContainer.style.right = direction + "px";
+  menuAllItems.style.right = direction + "px";
   // liGroupRight = window.getComputedStyle(menuContainer).right.slice(0,-2);
   // liGroupxPos = menuContainer.getBoundingClientRect().left;
   logFollowUp();
-}2253 
+}
