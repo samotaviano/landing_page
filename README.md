@@ -20,6 +20,6 @@ It's creating a landing page made up of sections that are highlighted by DOM man
 
 > Activate the menu horizontal scroll along side the vertical scroll to highlight the menu item corresponding to the planet on screen.
 
-> Add more info to the planets: Distance from the sun, One way light time to the sun, Length of the year, Planet type
+> Add more info to the planets.
 
 > Refine menu scrolling with smooth animation.
