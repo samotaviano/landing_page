@@ -89,11 +89,11 @@ const main = document.querySelector("main");
 const nav = document.querySelector("ul");
 
 for (let planet of planets) {
-main.innerHTML += createSection(planet);
-nav.innerHTML += createMenuItem(planet);
+  main.innerHTML += createSection(planet);
+  nav.innerHTML += createMenuItem(planet);
 }
 
-// creates and add scroll top button and adds the click event
+// creates and add scroll top button with click event
 const scrollTopButton = document.createElement("span");
 
 scrollTopButton.classList.add("scroll_top_btn");
@@ -108,12 +108,14 @@ window.scroll({
 })
 
 // Select all sections and add an event listener to the document that triggers a function
-// to loop trough every section and identifies the distance from the top of the view port
+// to loop trough every section and identifies the distance from the top of the viewport.
 // If the distance corresponds to the viewport it activates the apropriated class
 
 const planetSections = main.querySelectorAll("section");
 
-// Detect visible area of the planet sections percentage
+// Detect percentage of the visible area of the planet sections
+// This functions receives arguments from the scroll event
+// The scroll event sets all the variables necessary to calculate the visible area of the sections
 function visibleAreaPerc (sectionTop, sectionBottom, sectionHeight, viewHeight, viewDistance) {
 if ( sectionBottom - viewDistance >= sectionHeight || sectionBottom < 0 ) {
   return 0;
@@ -129,15 +131,6 @@ if ( sectionBottom - viewDistance >= sectionHeight || sectionBottom < 0 ) {
 }
 }
 
-// Calculete section distance %%%%%% DELETE %%%%%%
-// function getSectionDist (sectY, bodyY) {
-// if ( sectY < 0 ) {
-//   return Math.abs(sectY);
-// } else {
-//   return Math.abs(sectY) + Math.abs(bodyY);
-// }
-// }
-
 document.addEventListener("scroll", () => {
 for (let i = 0; i < planetSections.length; i++) {
     // Variables to store the Y position and bottom position of each section
@@ -145,7 +138,8 @@ for (let i = 0; i < planetSections.length; i++) {
     
     // The body Y position and viewport height
     // This data is used to calculate how percentage of the box is visible
-    // If more than 70% of the section is visible it applies the actice class
+    // If more than 55% of the section is visible it applies the actice class
+    // to the nearest section from the top
     const section = planetSections[i];
     const planet = section.getAttribute("id");
     const sectionTop = section.getBoundingClientRect().top;
@@ -158,7 +152,7 @@ for (let i = 0; i < planetSections.length; i++) {
     const bodyTop = document.body.getBoundingClientRect().top;
     const viewDistance = viewHeight + Math.abs(bodyTop);
 
-    // const visibleArea = (planetBPos + planetExtraMargin) / viewPortHeigh;
+    // function to calculate visible area
     const visibleArea = visibleAreaPerc(sectionTop, sectionBottom, sectionHeight, viewHeight, viewDistance);
     
     // Sets the menu item link related to each section
@@ -173,6 +167,7 @@ for (let i = 0; i < planetSections.length; i++) {
     }
   }
 
+// Activates the scroll top button
 if (document.body.getBoundingClientRect().y < -320 ) {
   scrollTopButton.style.setProperty("display", "flex");
 } else {
@@ -193,6 +188,8 @@ item.addEventListener('click', (evt) => {
   const pagePosition = document.body.getBoundingClientRect().y;
   const distanceToScroll = pagePosition - Planetpos;
 
+  // The top position sets a margin top (124)
+  // to give space to the nav menu
   window.scroll({
     top: Math.abs(distanceToScroll) - 124,
     behavior: "smooth",
@@ -200,7 +197,11 @@ item.addEventListener('click', (evt) => {
 });
 }
 
-// Slider menu
+
+// Here comes the code to activate the horizontal scroll
+// functinality to the menu
+
+
 // Variables to store the header (container) and the arrows
 const arrowsContainer = document.querySelector("header");
 const leftArrow = document.querySelector(".nav-arrow:first-child");
@@ -230,11 +231,12 @@ let firstMenuItemXPos = firstMenuItem.getBoundingClientRect().left;
 const lastMenuItem = menuContainer.querySelector("li:last-child");
 let lastMenuItemXPos = lastMenuItem.getBoundingClientRect().left;
 
+// Function to check the size and position of menu elements
 function checkSizesPos() {
-menuContainerWidth = window.getComputedStyle(menuContainer).width.slice(0,-2);
-firstMenuItemXPos = firstMenuItem.getBoundingClientRect().left;
-lastMenuItemXPos = lastMenuItem.getBoundingClientRect().left;
-setArrows();
+  menuContainerWidth = window.getComputedStyle(menuContainer).width.slice(0,-2);
+  firstMenuItemXPos = firstMenuItem.getBoundingClientRect().left;
+  lastMenuItemXPos = lastMenuItem.getBoundingClientRect().left;
+  setArrows();
 }
 
 
@@ -248,118 +250,78 @@ const step = 5;
 let direction;
 let timer;
 
-function logFollowUp () {
-console.log(`
-##################################
-Largura ul [menuContainerWidth]: ${menuContainerWidth}
-Largura de cada item de menu [menuItemWidth]: ${menuItemWidth}
-Largura total de todos os items de menu [menuItemsTotalWidth]: ${menuItemsTotalWidth}
-1º item de menu posição X (left) [firstMenuItemXPos]: ${firstMenuItemXPos}
-Último item de menu posição X (left) [lastMenuItemXPos]: ${lastMenuItemXPos}
-Padding do Header [arrowsContainerPadding]: ${arrowsContainerPadding}
-${arrowsContainerPadding}
-##################################
-`);
-}
-
-
-// Function to display or hidde the arros
+// Function to display or hidde the arrows
 // According to certain conditions
 setArrows();
 
 function setArrows () {
-// navWidth = window.getComputedStyle(nav).width.slice(0,-2);
-menuContainerWidth = window.getComputedStyle(menuContainer).width.slice(0,-2);
-if (menuContainerWidth > 1100) {
-  rightArrow.style.display = "none";
-  leftArrow.style.display = "none";
-} else {
-  rightArrow.style.display = "block";
-  leftArrow.style.display = "block";
+  // navWidth = window.getComputedStyle(nav).width.slice(0,-2);
+  menuContainerWidth = window.getComputedStyle(menuContainer).width.slice(0,-2);
+  if (menuContainerWidth > 1100) {
+    rightArrow.style.display = "none";
+    leftArrow.style.display = "none";
+  } else {
+    rightArrow.style.display = "block";
+    leftArrow.style.display = "block";
+  }
 }
-// menuItemsxPos = menuItems.getBoundingClientRect().left;
-// rigthLimit = calcRigthLimit(menuItemsxPos, navWidth, arrowsContainerPadding);
-// console.log(rigthLimit);
-// if (rigthLimit >= 1190) {
-//   rightArrow.style.display = "none";
-//   leftArrow.style.display = "block";
-// } else if (menuItemsxPos === 40 && menuItemsTotalWidth > navWidth) {
-//   rightArrow.style.display = "block";
-//   leftArrow.style.display = "none";
-// } else if (menuItemsxPos < 40 && menuItemsTotalWidth > navWidth) {
-//   rightArrow.style.display = "block";
-//   leftArrow.style.display = "block";
-// }
-}
-
-// Calculate the rigth limit: sum of menu left, nav width and header padding %%%%%% DELETE %%%%%%
-// 
-// function calcRigthLimit (menuLeft, liGroupWidth, headerPadding) {
-// return Math.abs(menuLeft) + Number(liGroupWidth) + Number(headerPadding);
-// }
-
-
-// Get the x position of the menu (the ul element) %%%%%% DELETE %%%%%%
-// let liGroupRight = window.getComputedStyle(menuContainer).right.slice(0,-2);
-// logFollowUp();
 
 // If the window is resized gets the width of the nav element
 // which is the menu container
 window.addEventListener('resize', function() {
-setArrows();
-logFollowUp();
+  setArrows();
 }, true);
 
 
 // Add pointerdown event
 arrowsContainer.addEventListener("pointerdown",(evt) => {
-onPress = true;
-direction = evt.target.getAttribute("data-dir");
+  onPress = true;
+  direction = evt.target.getAttribute("data-dir");
 
-if (!timer) {
-  timer = setInterval(function() {
-    moveDirection(direction);
-    checkSizesPos()
-    setArrows();
-  }, 1);
-}
+  if (!timer) {
+    timer = setInterval(function() {
+      moveDirection(direction);
+      checkSizesPos()
+      setArrows();
+    }, 1);
+  }
 
 });
 
 // Add pointerup event
 arrowsContainer.addEventListener("pointerup", () => {
-onPress = false;
-clearInterval(timer);
-// Sets back the timer variable to null
-timer = null;
+  onPress = false;
+  clearInterval(timer);
+  // Sets back the timer variable to null
+  timer = null;
 });
+
+
+// Function to move the menu
+function move (direction) {
+  menuAllItems.style.right = direction + "px";
+}
 
 // Function detect moving direction and activate the movement
 function moveDirection (arrowDir) {
   
-if (onPress === true) {
-  // Condition:  && menuItemsxPos <= 30  
-  if (arrowDir === "left" && firstMenuItemXPos < 40) {
-      
-      let dir = distance = distance - step;
-      move (dir);
-      checkSizesPos()
+  if (onPress === true) {
 
-    // Condition:   && calcRigthLimit(liGroupxPos, navWidth, arrowsContainerPadding) < 1200  
-  } else if (arrowDir === "right" && lastMenuItemXPos > menuContainerWidth - 110) {
-      
-      let dir = distance = distance + step;
-      move (dir);
-      checkSizesPos()
+    if (arrowDir === "left" && firstMenuItemXPos < 40) {
+        
+        let dir = distance = distance - step;
+        move (dir);
+        checkSizesPos()
 
-  }   
 
+    } else if (arrowDir === "right" && lastMenuItemXPos > menuContainerWidth - 110) {
+        
+        let dir = distance = distance + step;
+        move (dir);
+        checkSizesPos()
+
+    }   
+
+  }
 }
-}
 
-function move (direction) {
-menuAllItems.style.right = direction + "px";
-// liGroupRight = window.getComputedStyle(menuContainer).right.slice(0,-2);
-// liGroupxPos = menuContainer.getBoundingClientRect().left;
-logFollowUp();
-}
