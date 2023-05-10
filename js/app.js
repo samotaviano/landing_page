@@ -313,8 +313,8 @@ window.addEventListener('resize', function(event) {
 }, true);
 
 
-// Add mousedown event
-arrowsContainer.addEventListener("mousedown",(evt) => {
+// Add pointerdown event
+arrowsContainer.addEventListener("pointerdown",(evt) => {
   onPress = true;
   direction = evt.target.getAttribute("data-dir");
   
@@ -328,8 +328,8 @@ arrowsContainer.addEventListener("mousedown",(evt) => {
 
 });
 
-// Add mouseup event
-arrowsContainer.addEventListener("mouseup", () => {
+// Add pointerup event
+arrowsContainer.addEventListener("pointerup", () => {
   onPress = false;
   clearInterval(timer);
   // Sets back the timer variable to null
