@@ -19,7 +19,6 @@ body {
 ul {
   padding: 0;
   margin: 0;
-  background: #de76fa;
   width: 1200px;
 }
 
@@ -41,7 +40,7 @@ p {
 }
 
 .page_header {
-  background: #BCB8B1;
+  background: #BCC5E0;
   padding: 0 40px;
   position: sticky;
   top: 0;
@@ -194,7 +193,7 @@ h3 {
   font-size: 14px;
   font-weight: 200;
   margin: 20px auto;
-  color: #BCB8B1;
+  color: #BCC5E0;
   background: rgba(255,255,255,.1);
   display: inline-block;
   padding: 6px 18px;
@@ -225,7 +224,7 @@ h3 {
   align-items: center;
   justify-content: center;
   font-size: 48px;
-  color: #BCB8B1;
+  color: #BCC5E0;
   cursor: pointer;
 }
 
@@ -236,7 +235,12 @@ h3 {
 
 /* Media queries */
 @media (max-width: 600px) {
+  h1 {
+    font-size: 60px;
+  }
+
   h2 {
+    font-size: 48px;
     padding: 200px 0 40px;
     text-align: center;
   }
